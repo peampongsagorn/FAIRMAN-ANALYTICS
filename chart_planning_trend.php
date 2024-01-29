@@ -229,33 +229,7 @@ $actualJson = json_encode($ActualOtData);
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
-        // function drawChart() {
-        //     var planData = JSON.parse('<?php echo $planJson; ?>');
-        //     var actualData = JSON.parse('<?php echo $actualJson; ?>');
-            
-        //     var data = new google.visualization.DataTable();
-        //     data.addColumn('string', 'เดือน');
-        //     data.addColumn('number', 'วางแผน FIX');
-        //     data.addColumn('number', 'วางแผน NONFIX');
-        //     data.addColumn('number', 'จริง FIX');
-        //     data.addColumn('number', 'จริง NONFIX');
-
-        //     for (var i = 0; i < PlanOTData.length; i++) {
-        //         data.addRow([planData[i].Month, planData[i].Plan_FIX, planData[i].Plan_NONFIX,
-        //                      actualData[i].Actual_FIX, actualData[i].Actual_NONFIX]);
-        //     }
-
-        //     var options = {
-        //         title: 'แนวโน้มการวางแผน OT',
-        //         vAxis: {title: 'ชั่วโมง'},
-        //         hAxis: {title: 'เดือน'},
-        //         seriesType: 'bars',
-        //         series: {2: {type: 'line'}, 3: {type: 'line'}}
-        //     };
-
-        //     var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-        //     chart.draw(data, options);
-        // }
+       
         function drawChart() {
             var planData = JSON.parse('<?php echo $planJson; ?>');
             var actualData = JSON.parse('<?php echo $actualJson; ?>');

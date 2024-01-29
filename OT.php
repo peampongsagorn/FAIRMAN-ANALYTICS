@@ -53,15 +53,28 @@ require_once('../../config/connection.php');
             /* จัดให้ไอเท็มอยู่ด้านบนสุดของคอนเทนเนอร์ flex */
         }
 
-        .upper-box,
+        /* .upper-box,
         .lower-box {
             flex-basis: calc(50% - 10px);
-            /* กำหนดขนาดเริ่มต้นของแต่ละกล่อง เป็นครึ่งหนึ่งของคอนเทนเนอร์ ลบด้วยช่องว่าง */
             margin: 5px;
-            /* สร้างช่องว่างระหว่างสองกล่อง */
             height: auto;
-            /* ปรับความสูงตามที่จำเป็น หรือลบออกเพื่อใช้ความสูงตามเนื้อหา */
             padding: 10px;
+        } */
+
+        .upper-box {
+        flex-grow: 1; /* ให้ขยายได้ แต่น้อยกว่า lower-box */
+        flex-basis: calc(25% - 10px); /* กำหนดความกว้างเริ่มต้นของ upper-box */
+        margin: 5px;
+        padding: 10px;
+        box-sizing: border-box; /* ให้การคำนวณขนาดรวม padding และ border */
+        }
+
+        .lower-box {
+            flex-grow: 2; /* ให้ขยายมากกว่า upper-box */
+            flex-basis: calc(70% - 10px); /* กำหนดความกว้างเริ่มต้นของ lower-box */
+            margin: 5px;
+            padding: 10px;
+            box-sizing: border-box; /* ให้การคำนวณขนาดรวม padding และ border */
         }
 
         @media (min-width: 768px) {
@@ -175,6 +188,7 @@ require_once('../../config/connection.php');
 
                 <?php include('../analytics/chart_planning_trend.php') ?>
                 <?php include('../analytics/chart_ot_type_drilldown.php') ?>
+                <?php include('../analytics/chart_top5_emp.php') ?>
             </div>
         </div>
         <?php include('../analytics/include/footer.php') ?>

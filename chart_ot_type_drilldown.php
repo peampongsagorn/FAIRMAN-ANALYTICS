@@ -197,11 +197,11 @@ $ot_data_json = json_encode($ot_data);
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6">
-        <div id="donutchart" style="width: 100%; height: 500px;"></div>
+      <div class="col-md-5">
+        <div id="donutchart" style="width: 150%; height: 400px;"></div>
       </div>
-      <div class="col-md-6">
-        <div id="detailchart" style="width: 100%; height: 500px;"></div>
+      <div class="col-md-5">
+        <div id="detailchart" style="width: 150%; height: 400px;"></div>
       </div>
     </div>
   </div>

@@ -61,9 +61,23 @@ require_once('../../config/connection.php');
             /* สร้างช่องว่างระหว่างสองกล่อง */
             height: auto;
             /* ปรับความสูงตามที่จำเป็น หรือลบออกเพื่อใช้ความสูงตามเนื้อหา */
+            padding: 10px;
         }
 
-        /* สไตล์เฉพาะสำหรับบัตรที่มี class 'custom-card' */
+        @media (min-width: 768px) {
+        .upper-box,
+        .lower-box {
+            flex-basis: calc(50% - 20px); /* กำหนดความกว้างของแต่ละกล่อง */
+            margin: 10px; /* กำหนดระยะห่างระหว่างกล่อง */
+        }
+        }
+
+        /* หากต้องการตั้งค่าให้กล่องไม่ขยายเกินกว่าขนาดที่กำหนดไว้ สามารถใช้ max-width */
+        .upper-box,
+        .lower-box {
+        max-width: 880px; /* หรือตามที่คุณต้องการ */
+        }
+                /* สไตล์เฉพาะสำหรับบัตรที่มี class 'custom-card' */
         .custom-card {
             display: flex;
             flex-direction: column;
@@ -110,10 +124,10 @@ require_once('../../config/connection.php');
     <div class="main-container">
         <div class="pd-ltr-20">
             <div class="card-box upper-box pd-20 height-100-p mb-30">
-                <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                    วิเคราะห์ข้อมูลการทำ OT<h4 class="weight-600 font-15 text-primary"></h4>
+                <h4 class="font-20 weight-500 mb-20 text-capitalize" style="margin-bottom: 0px">
+                    วิเคราะห์ข้อมูลการทำ OT
                 </h4>
-                <p class="font-18 max-width-1000">* หมายเหตุ ทางผู้พัฒนาได้ปรับปรุงส่วนข้อมูล ณ วันที่ 5 ม.ค. 2567 </p>
+                <p class="font-8 max-width-1000;">ข้อมูล ณ วันที่ <?php echo strtoupper(date('d-M-Y')); ?> </p>
                 <?php include('../analytics/filter.php') ?>
             </div>
             <div class="card-box lower-box pd-20 height-100-p mb-30">

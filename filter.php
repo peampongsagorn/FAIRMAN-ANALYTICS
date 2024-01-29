@@ -60,161 +60,194 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
+
     <style>
         .card-body-month {
-        min-height: 65px; 
-        padding: 10px; 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; 
+            min-height: 65px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .form-control, .form-select {
-        height: 35px; /* ลดขนาดความสูงของ input และ select */
-        margin-bottom: 0.5rem; /* ปรับขนาดระยะห่างหากจำเป็น */
-        padding: 5px 10px; /* ลดขนาดพื้นที่ภายใน input และ select */
+        .form-control,
+        .form-select {
+            height: 35px;
+            margin-bottom: 0.5rem;
+            padding: 5px 10px;
         }
 
         .card-header-month {
-        padding: 5px 10px; /* ลดขนาดพื้นที่ภายในส่วนหัวของ card */
-        font-size: 14px; /* ปรับขนาดตัวอักษรของหัวข้อถ้าจำเป็น */
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-label {
+            flex-basis: 20%;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .form-control-container, .form-control-container-month {
+            flex-basis: 75%;
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* หรือระยะห่างที่คุณต้องการ */
+        }
+
+        .custom-select, .form-control {
+            width: 100%;
+        }
+
+        .submit-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
     </style>
-
+    <?php include('../analytics/include/header.php') ?>
 
 </head>
 
 <body>
-    <!-- เริ่มต้นฟอร์มที่นี่ -->
+
     <form method="post" action="">
         <section>
-            <div class="col-lg-12 mb-2">
-                <div class="card h-100">
-                    <p class="card-header-month" style="color: #000">เลือกช่วงเดือนเริ่มต้นและสิ้นสุด</p>
-                    <div class="card-body-month">
-                        <div class="row">
-                            <div class="col">
-                                <input type="month" id="start-month" name="startMonth" class="form-control">
-                                <!-- <label for="start-month" style="font-size: 12px">เดือนและปีเริ่มต้น</label> -->
-                            </div>
-                            <div class="col">
-                                <input type="month" id="end-month" name="endMonth" placeholder="From Date"
-                                    class="form-control">
-                                <!-- <label for="end-month" style="font-size: 12px">เดือนและปีสิ้นสุด</label> -->
-                            </div>
-                        </div>
+            <div class="from-row">
+                <p class="from-label">เลือกช่วงเดือนเริ่มต้น:</p>
+                <div class="form-control-container-month">
+                    <div class="form-group">
+                        <input type="month" id="start-month" name="startMonth" class="custom-select form-control" placeholder="From Date">
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="mt-3 ml-5">
-                    Business
+
+            <div class="from-row">
+                <p class="from-label">เลือกช่วงเดือนสิ้นสุด:</p>
+                <div class="form-control-container-month">
+                    <div>
+                        <input type="month" id="end-month" name="endMonth" class="custom-select form-control" placeholder="To Date">
+                    </div>
                 </div>
-                <div class="mt-2 ml-2 col-md-6 col-sm-12">
+            </div>
+
+            <div class="from-row">
+                <div class="from-label">
+                    Business:
+                </div>
+                <div class="form-control-container">
                     <div class="form-group">
                         <select id="businessID" name="businessID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off">
+                            aria-label="Default select example" autocomplete="off" data-live-search="true">
                             <option value="" selected>All</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="mt-3 ml-5">
-                    Sub-busisness
+            <div class="from-row">
+                <div class="from-label">
+                    Sub-busisness:
                 </div>
-                <div class="mt-2 ml-2 col-md-6 col-sm-12">
+                <div class="form-control-container">
                     <div class="form-group">
                         <select id="sub_businessID" name="sub_businessID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off">
+                            aria-label="Default select example" autocomplete="off" data-live-search="true">
                             <option value="" selected>All</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="mt-3 ml-5">
-                    Organization
+            <div class="from-row">
+                <div class="from-label">
+                    Organization:
                 </div>
-                <div class="mt-2 ml-2 col-md-6 col-sm-12">
+                <div class="form-control-container">
                     <div class="form-group">
                         <select id="organizationID" name="organizationID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off">
+                            aria-label="Default select example" autocomplete="off" data-live-search="true">
                             <option value="" selected>All</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="mt-3 ml-5">
-                    Company
+            <div class="from-row">
+                <div class="from-label">
+                    Company:
                 </div>
-                <div class="mt-2 ml-2 col-md-6 col-sm-12">
+                <div class="form-control-container">
                     <div class="form-group">
                         <select id="companyID" name="companyID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off">
+                            aria-label="Default select example" autocomplete="off" data-live-search="true">
                             <option value="" selected>All</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="mt-3 ml-5">
-                    Location
+            <div class="from-row">
+                <div class="from-label">
+                    Location:
                 </div>
-                <div class="mt-2 ml-2 col-md-6 col-sm-12">
+                <div class="form-control-container">
                     <div class="form-group">
                         <select id="locationID" name="locationID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off">
+                            aria-label="Default select example" autocomplete="off" data-live-search="true">
                             <option value="" selected>All</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="mt-2 ml-5">
-                    Division
+            <div class="from-row">
+                <div class="from-label">
+                    Division:
                 </div>
-                <div class="mt-1 ml-2 col-md-6 col-sm-12">
+                <div class="form-control-container">
                     <div class="form-group">
                         <select id="divisionID" name="divisionID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off">
+                            aria-label="Default select example" autocomplete="off" data-live-search="true">
                             <option value="" hidden>All</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="mt-2 ml-5">
-                    Department
+            <div class="from-row">
+                <div class="from-label">
+                    Department:
                 </div>
-                <div class="mt-1 ml-2 col-md-6 col-sm-12">
+                <div class="form-control-container">
                     <div class="form-group">
                         <select id="departmentID" name="departmentID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off">
+                            aria-label="Default select example" autocomplete="off" data-live-search="true">
                             <option value="" hidden>All</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="mt-2 ml-5">
-                    Section
+            <div class="from-row">
+                <div class="from-label">
+                    Section:
                 </div>
-                <div class="mt-1 ml-2 col-md-6 col-sm-12">
+                <div class="form-control-container">
                     <div class="form-group">
                         <select id="sectionID" name="sectionID" class="custom-select form-control"
-                            aria-label="Default select example"autocomplete="off">
+                            aria-label="Default select example" autocomplete="off" data-live-search="true">
                             <option value="" hidden>All</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="submit-button-container">
+                <div class="row">
                     <button type="submit" class="btn btn-primary" style="font-size: 20px; padding: 10px 20px;"
                         name="submit">Submit</button>
                 </div>
@@ -222,7 +255,7 @@ if (isset($_POST['submit'])) {
 
         </section>
     </form>
-    <!-- สิ้นสุดฟอร์ม -->
+
 
     <?php
     // ตรวจสอบว่ามีข้อมูลที่ส่งมาหลังจากการ submit ฟอร์มหรือไม่
@@ -233,7 +266,6 @@ if (isset($_POST['submit'])) {
 
 
 
-    <!-- js -->
     <?php include('../analytics/include/scripts.php') ?>
 </body>
 <script>
@@ -285,9 +317,6 @@ if (isset($_POST['submit'])) {
         updateSubBusinesses();
     });
 
-    // function updateBusinesses() {
-    //     // ดึงข้อมูล business และปรับปรุง dropdown
-    // }
 
     function updateSubBusinesses(businessId = '') {
         // ดึงข้อมูล sub-business ตาม business ที่เลือก
@@ -300,7 +329,7 @@ if (isset($_POST['submit'])) {
                     sub_businessSelect.innerHTML += '<option value="' + sub_business.sub_business_id + '">' + sub_business.name_eng + '</option>';
                 });
                 $(sub_businessSelect).selectpicker('refresh');
-                // หลังจากอัปเดต department ก็โหลด sections ใหม่ตาม department แรก  
+                // หลังจากอัปเดต business ก็โหลด sub-business ใหม่ตาม business แรก  
                 updateOrganizations();
             })
             .catch(error => {
@@ -319,7 +348,7 @@ if (isset($_POST['submit'])) {
                 organizations.forEach(function (organization) {
                     organizationSelect.innerHTML += '<option value="' + organization.organization_id + '">' + organization.organization_id + '</option>';
                 });
-                // หลังจากอัปเดต department ก็โหลด sections ใหม่ตาม department แรก
+                // หลังจากอัปเดต sub-business ก็โหลด organization ใหม่ตาม sub-business แรก
                 $(organizationSelect).selectpicker('refresh');
                 updateCompanies();
             })
@@ -338,7 +367,7 @@ if (isset($_POST['submit'])) {
                 companys.forEach(function (company) {
                     companySelect.innerHTML += '<option value="' + company.company_id + '">' + company.name_eng + '</option>';
                 });
-                // หลังจากอัปเดต department ก็โหลด sections ใหม่ตาม department แรก
+                // หลังจากอัปเดต organization ก็โหลด company ใหม่ตาม organization แรก
                 $(companySelect).selectpicker('refresh');
                 updateLocations();
             })
@@ -357,7 +386,7 @@ if (isset($_POST['submit'])) {
                 locations.forEach(function (location) {
                     locationSelect.innerHTML += '<option value="' + location.location_id + '">' + location.name_eng + '</option>';
                 });
-                // หลังจากอัปเดต department ก็โหลด sections ใหม่ตาม department แรก
+                // หลังจากอัปเดต company ก็โหลด location ใหม่ตาม company แรก
                 $(locationSelect).selectpicker('refresh');
                 updateDivisions();
             })
@@ -376,7 +405,7 @@ if (isset($_POST['submit'])) {
                 divisions.forEach(function (division) {
                     divisionSelect.innerHTML += '<option value="' + division.division_id + '">' + division.name_eng + '</option>';
                 });
-                // หลังจากอัปเดต department ก็โหลด sections ใหม่ตาม department แรก
+                // หลังจากอัปเดต locztion ก็โหลด division ใหม่ตาม location แรก
                 $(divisionSelect).selectpicker('refresh');
                 updateDepartments();
             })
@@ -394,7 +423,7 @@ if (isset($_POST['submit'])) {
                 departments.forEach(function (department) {
                     departmentSelect.innerHTML += '<option value="' + department.department_id + '">' + department.name_eng + '</option>';
                 });
-                // หลังจากอัปเดต department ก็โหลด sections ใหม่ตาม department แรก
+                // หลังจากอัปเดต division ก็โหลด department ใหม่ตาม division แรก
                 $(departmentSelect).selectpicker('refresh');
                 updateSections();
             })
@@ -412,6 +441,7 @@ if (isset($_POST['submit'])) {
                 sections.forEach(function (section) {
                     sectionSelect.innerHTML += '<option value="' + section.section_id + '">' + section.name_thai + '</option>';
                 });
+                // หลังจากอัปเดต department ก็โหลด section ใหม่ตาม department แรก
                 $(sectionSelect).selectpicker('refresh');
             })
             .catch(error => {

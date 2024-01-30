@@ -19,34 +19,6 @@ if ($filterData) {
         $sqlConditions_plan .= " AND month BETWEEN '{$filterData['startMonth']}' AND '{$filterData['endMonthDecember']}'";
     }
 
-    // if (!empty($filterData['businessId'])) {
-    //     $sqlConditions_plan .= " AND sb.business_id = '{$filterData['businessId']}'";
-    // }
-
-    // if (!empty($filterData['sub_businessId'])) {
-    //     $sqlConditions_plan .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
-    // }
-
-    // if (!empty($filterData['organizationId'])) {
-    //     $sqlConditions_plan .= " AND c.organization_id = '{$filterData['organizationId']}'";
-    // }
-
-    // if (!empty($filterData['companyId'])) {
-    //     $sqlConditions_plan .= " AND l.company_id = '{$filterData['companyId']}'";
-    // }
-
-    // if (!empty($filterData['locationId'])) {
-    //     $sqlConditions_plan .= " AND dv.location_id = '{$filterData['locationId']}'";
-    // }
-
-    // if (!empty($filterData['divisionId'])) {
-    //     $sqlConditions_plan .= " AND d.division_id = '{$filterData['divisionId']}'";
-    // }
-    
-    // if (!empty($filterData['departmentId'])) {
-    //     $sqlConditions_plan .= " AND s.department_id = '{$filterData['departmentId']}'";
-    // }
-
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_plan .= " AND cc.section_id = '{$filterData['sectionId']}'";
     }
@@ -117,37 +89,6 @@ if ($data['totalOTPercent'] != 0) {
 //query ชั่วโมงการทำงานจริง
 if ($filterData) {
     
-    // if (!empty($filterData['businessId'])) {
-    //     $sqlConditions_actual .= " AND sb.business_id = '{$filterData['businessId']}'";
-    // }
-
-    // if (!empty($filterData['sub_businessId'])) {
-    //     $sqlConditions_actual .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
-    // }
-
-    // if (!empty($filterData['organizationId'])) {
-    //     $sqlConditions_actual .= " AND c.organization_id = '{$filterData['organizationId']}'";
-    // }
-
-    // if (!empty($filterData['companyId'])) {
-    //     $sqlConditions_actual .= " AND l.company_id = '{$filterData['companyId']}'";
-    // }
-
-    // if (!empty($filterData['locationId'])) {
-    //     $sqlConditions_actual .= " AND dv.location_id = '{$filterData['locationId']}'";
-    // }
-
-    // if (!empty($filterData['divisionId'])) {
-    //     $sqlConditions_actual .= " AND d.division_id = '{$filterData['divisionId']}'";
-    // }
-
-    // if (!empty($filterData['departmentId'])) {
-    //     $sqlConditions_actual .= " AND s.department_id = '{$filterData['departmentId']}'";
-    // }
-
-    // if (!empty($filterData['sectionId'])) {
-    //     $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
-    // }
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
     }

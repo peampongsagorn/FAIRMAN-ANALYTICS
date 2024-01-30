@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 require_once('C:\xampp\htdocs\dashboard analytics\config\connection.php');
 
 $currentYear = date('Y');
@@ -13,54 +13,7 @@ $sqlGroupBy = "d.name_eng";
 
 if ($filterData) {
 
-    // if (!empty($filterData['businessId'])) {
-    //     $sqlSelect = "sb.name_eng AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-    //     $sqlConditions_actual .= " AND sb.business_id = '{$filterData['businessId']}'";
-    //     $sqlGroupBy = "sb.name_eng";
-    // }
-
-    // elseif (!empty($filterData['sub_businessId'])) {
-    //     $sqlSelect = "o.organization_id AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-    //     $sqlConditions_actual .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
-    //     $sqlGroupBy = " o.organization_id";
-    // }
-
-    // elseif (!empty($filterData['organizationId'])) {
-    //     $sqlSelect = "c.name_eng AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-    //     $sqlConditions_actual .= " AND dv.organization_id = '{$filterData['organizationId']}'";
-    //     $sqlGroupBy = "c.name_eng";
-    // }
-
-    // elseif (!empty($filterData['companyId'])) {
-    //     $sqlSelect = "l.name_eng AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-    //     $sqlConditions_actual .= " AND l.company_id = '{$filterData['companyId']}'";
-    //     $sqlGroupBy = "l.name_eng";
-    // }
-
-    // elseif (!empty($filterData['locationId'])) {
-    //     $sqlSelect = "dv.name_eng AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-    //     $sqlConditions_actual .= " AND dv.location_id = '{$filterData['locationId']}'";
-    //     $sqlGroupBy = "dv.name_eng";
-    // }
-
-    // elseif (!empty($filterData['divisionId'])) {
-    //     $sqlSelect = "d.name_eng AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-    //     $sqlConditions_actual .= " AND d.division_id = '{$filterData['divisionId']}'";
-    //     $sqlGroupBy = "d.name_eng";
-    // }
-
-    // elseif (!empty($filterData['departmentId'])) {
-    //     $sqlSelect = "s.name_eng AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-    //     $sqlConditions_actual .= " AND s.department_id = '{$filterData['departmentId']}'";
-    //     $sqlGroupBy = "s.name_eng";
-    // }
-
-    // elseif (!empty($filterData['sectionId'])) {
-    //     $sqlSelect = "cc.cost_center_code AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-    //     $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
-    //     $sqlGroupBy = "cc.cost_center_code";
-    // }
-
+    
     if(!empty($filterData['sectionId'])) {
             $sqlSelect = "cc.cost_center_code AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
             $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
@@ -88,7 +41,7 @@ if ($filterData) {
         }
     elseif (!empty($filterData['organizationId'])) {
             $sqlSelect = "c.name_eng AS NAME, SUM(otr.attendance_hours) / NULLIF(COUNT(DISTINCT(otr.card_id)),0) AS AVERAGE_OT";
-            $sqlConditions_actual .= " AND dv.organization_id = '{$filterData['organizationId']}'";
+            $sqlConditions_actual .= " AND c.organization_id = '{$filterData['organizationId']}'";
             $sqlGroupBy = "c.name_eng";
         }
                         

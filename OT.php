@@ -1,6 +1,5 @@
 <?php
-session_start(); // เรียกใช้ session_start() ก่อนที่จะใช้ session
-// require_once('C:\xampp\htdocs\dashboard analytics\config\connection.php');
+
 require_once('../../config/connection.php');
 ?>
 
@@ -8,14 +7,12 @@ require_once('../../config/connection.php');
 <html>
 
 <head>
-    <!-- Basic Page Info -->
+
     <meta charset="utf-8">
     <title>SCG | Fair Manpower</title>
 
-    <!-- Site favicon -->
     <link rel="icon" type="image/ico" href="../../favicon.ico">
 
-    <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -48,49 +45,37 @@ require_once('../../config/connection.php');
         .pd-ltr-20 {
             display: flex;
             justify-content: space-between;
-            /* จัดให้มีพื้นที่ระหว่างกล่องทั้งสอง */
             align-items: start;
-            /* จัดให้ไอเท็มอยู่ด้านบนสุดของคอนเทนเนอร์ flex */
         }
-
-        /* .upper-box,
-        .lower-box {
-            flex-basis: calc(50% - 10px);
-            margin: 5px;
-            height: auto;
-            padding: 10px;
-        } */
 
         .upper-box {
-        flex-grow: 1; /* ให้ขยายได้ แต่น้อยกว่า lower-box */
-        flex-basis: calc(25% - 10px); /* กำหนดความกว้างเริ่มต้นของ upper-box */
+        flex-grow: 1; 
+        flex-basis: calc(25% - 10px); 
         margin: 5px;
         padding: 10px;
-        box-sizing: border-box; /* ให้การคำนวณขนาดรวม padding และ border */
+        box-sizing: border-box;
         }
 
         .lower-box {
-            flex-grow: 2; /* ให้ขยายมากกว่า upper-box */
-            flex-basis: calc(70% - 10px); /* กำหนดความกว้างเริ่มต้นของ lower-box */
+            flex-grow: 2; 
+            flex-basis: calc(70% - 10px); 
             margin: 5px;
             padding: 10px;
-            box-sizing: border-box; /* ให้การคำนวณขนาดรวม padding และ border */
+            box-sizing: border-box;
         }
 
         @media (min-width: 768px) {
         .upper-box,
         .lower-box {
-            flex-basis: calc(50% - 20px); /* กำหนดความกว้างของแต่ละกล่อง */
-            margin: 10px; /* กำหนดระยะห่างระหว่างกล่อง */
+            flex-basis: calc(50% - 20px);
+            margin: 10px;
         }
         }
 
-        /* หากต้องการตั้งค่าให้กล่องไม่ขยายเกินกว่าขนาดที่กำหนดไว้ สามารถใช้ max-width */
         .upper-box,
         .lower-box {
-        max-width: 880px; /* หรือตามที่คุณต้องการ */
+        max-width: 880px;
         }
-                /* สไตล์เฉพาะสำหรับบัตรที่มี class 'custom-card' */
         .custom-card {
             display: flex;
             flex-direction: column;
@@ -189,6 +174,7 @@ require_once('../../config/connection.php');
                 <?php include('../analytics/chart_planning_trend.php') ?>
                 <?php include('../analytics/chart_ot_type_drilldown.php') ?>
                 <?php include('../analytics/chart_top5_emp.php') ?>
+                <?php include('../analytics/chart_ot_per_person.php') ?>
             </div>
         </div>
         <?php include('../analytics/include/footer.php') ?>

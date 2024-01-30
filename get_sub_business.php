@@ -1,14 +1,11 @@
 <?php
 session_start();
-// require_once('C:\xampp\htdocs\dashboard analytics\config\connection.php');
 require_once('../../config/connection.php');
 
 header('Content-Type: application/json');
 
-// ตรวจสอบว่ามีการส่ง division_id มาหรือไม่
 if(isset($_GET['businessId']) && !empty($_GET['businessId'])) {
     $businessId = $_GET['businessId'];
-    // กรองข้อมูล department ตาม division_id ที่รับมา
     $sql = "SELECT sub_business_id,name_eng FROM sub_business WHERE business_id = ?";
     $params = array($businessId);
 } else {

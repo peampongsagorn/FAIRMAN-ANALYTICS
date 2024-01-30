@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
     $endYearCurrent = date('Y', strtotime($receivedEndMonth_Current));
     $endMonthCurrent = date('m', strtotime($receivedEndMonth_Current));
 
-    // $submittedData = "Submitted Data: star->{$startMonthDate}, end -> {$endMonthDate_Current}, department -> {$_POST['departmentID']}, section -> {$_POST['sectionID']}";
+    //$submittedData = "Submitted Data: Org -> {$_POST['organizationID']}";
     // เก็บข้อมูลไว้ใน session
     $_SESSION['filter'] = [
         'startMonthDate' => $startMonthDate,
@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
         }
 
         .form-group {
-            margin-bottom: 15px; /* หรือระยะห่างที่คุณต้องการ */
+            margin-bottom: 15px;
         }
 
         .custom-select, .form-control {
@@ -212,7 +212,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                         <select id="divisionID" name="divisionID" class="custom-select form-control"
                             aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" hidden>All</option>
+                            <option value="" selected>All</option>
                         </select>
                     </div>
                 </div>
@@ -226,7 +226,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                         <select id="departmentID" name="departmentID" class="custom-select form-control"
                             aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" hidden>All</option>
+                            <option value="" selected>All</option>
                         </select>
                     </div>
                 </div>
@@ -240,7 +240,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                         <select id="sectionID" name="sectionID" class="custom-select form-control"
                             aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" hidden>All</option>
+                            <option value="" selected>All</option>
                         </select>
                     </div>
                 </div>
@@ -258,7 +258,6 @@ if (isset($_POST['submit'])) {
 
 
     <?php
-    // ตรวจสอบว่ามีข้อมูลที่ส่งมาหลังจากการ submit ฟอร์มหรือไม่
     if (!empty($submittedData)) {
         echo "<p>{$submittedData}</p>";
     }

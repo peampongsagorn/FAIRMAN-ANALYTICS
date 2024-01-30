@@ -2,8 +2,7 @@
     <div class="brand-logo">
         <a href="dashboard.php">
             <!-- Version 1 -->
-            <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*1alnhe0*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgwNzg3OS42MC4xLjE3MDI4MDc4ODAuNTkuMC4w" alt="" class="dark-logo">
-            <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*1alnhe0*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgwNzg3OS42MC4xLjE3MDI4MDc4ODAuNTkuMC4w" alt="" class="light-logo">
+            <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmaEmRci8GWNpFGXSXhNVqmNGQwyZ4vRaa4c3fgXAtkufe">
 
         </a>
     </div>

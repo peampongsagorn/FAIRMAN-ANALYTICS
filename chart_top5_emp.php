@@ -143,7 +143,7 @@ $top10 = array_slice($sortedData, 0, 10);
 <head>
 <style>
     .table {
-        width: 80%; /* ลดขนาดความกว้างของตาราง */
+        width: 90%; /* ลดขนาดความกว้างของตาราง */
         margin: auto; /* จัดตั้งตรงกลาง */
     }
 
@@ -156,7 +156,7 @@ $top10 = array_slice($sortedData, 0, 10);
     }
 
     th, td {
-        padding: 5px; /* ลดระยะห่างภายในคอลัมน์ */
+        padding: 3px; /* ลดระยะห่างภายในคอลัมน์ */
     }
 </style>
 

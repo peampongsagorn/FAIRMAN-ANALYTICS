@@ -8,36 +8,60 @@ $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AN
 
 if ($filterData) {
 
-    if (!empty($filterData['businessId'])) {
-        $sqlConditions_actual .= " AND sb.business_id = '{$filterData['businessId']}'";
-    }
+    // if (!empty($filterData['businessId'])) {
+    //     $sqlConditions_actual .= " AND sb.business_id = '{$filterData['businessId']}'";
+    // }
 
-    if (!empty($filterData['sub_businessId'])) {
-        $sqlConditions_actual .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
-    }
+    // if (!empty($filterData['sub_businessId'])) {
+    //     $sqlConditions_actual .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
+    // }
 
-    if (!empty($filterData['organizationId'])) {
-        $sqlConditions_actual .= " AND c.organization_id = '{$filterData['organizationId']}'";
-    }
+    // if (!empty($filterData['organizationId'])) {
+    //     $sqlConditions_actual .= " AND c.organization_id = '{$filterData['organizationId']}'";
+    // }
 
-    if (!empty($filterData['companyId'])) {
-        $sqlConditions_actual .= " AND l.company_id = '{$filterData['companyId']}'";
-    }
+    // if (!empty($filterData['companyId'])) {
+    //     $sqlConditions_actual .= " AND l.company_id = '{$filterData['companyId']}'";
+    // }
 
-    if (!empty($filterData['locationId'])) {
-        $sqlConditions_actual .= " AND dv.location_id = '{$filterData['locationId']}'";
-    }
+    // if (!empty($filterData['locationId'])) {
+    //     $sqlConditions_actual .= " AND dv.location_id = '{$filterData['locationId']}'";
+    // }
 
-    if (!empty($filterData['divisionId'])) {
-        $sqlConditions_actual .= " AND d.division_id = '{$filterData['divisionId']}'";
-    }
+    // if (!empty($filterData['divisionId'])) {
+    //     $sqlConditions_actual .= " AND d.division_id = '{$filterData['divisionId']}'";
+    // }
 
-    if (!empty($filterData['departmentId'])) {
-        $sqlConditions_actual .= " AND s.department_id = '{$filterData['departmentId']}'";
-    }
+    // if (!empty($filterData['departmentId'])) {
+    //     $sqlConditions_actual .= " AND s.department_id = '{$filterData['departmentId']}'";
+    // }
 
+    // if (!empty($filterData['sectionId'])) {
+    //     $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
+    // }
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
+    }
+    elseif (!empty($filterData['departmentId'])) {
+        $sqlConditions_actual .= " AND s.department_id = '{$filterData['departmentId']}'";
+    }
+    elseif (!empty($filterData['divisionId'])) {
+        $sqlConditions_actual .= " AND d.division_id = '{$filterData['divisionId']}'";
+    }
+    elseif (!empty($filterData['locationId'])) {
+        $sqlConditions_actual .= " AND dv.location_id = '{$filterData['locationId']}'";
+    }
+    elseif (!empty($filterData['companyId'])) {
+        $sqlConditions_actual .= " AND l.company_id = '{$filterData['companyId']}'";
+    }
+    elseif (!empty($filterData['organizationId'])) {
+        $sqlConditions_actual .= " AND c.organization_id = '{$filterData['organizationId']}'";
+    }
+    elseif (!empty($filterData['sub_businessId'])) {
+        $sqlConditions_actual .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
+    }
+    elseif (!empty($filterData['businessId'])) {
+        $sqlConditions_actual .= " AND sb.business_id = '{$filterData['businessId']}'";
     }
 }
 

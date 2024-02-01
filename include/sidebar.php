@@ -1,9 +1,7 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="dashboard.php">
-            <!-- Version 1 -->
-            <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmaEmRci8GWNpFGXSXhNVqmNGQwyZ4vRaa4c3fgXAtkufe">
-
+            <img src="../../analytics/image/SCGlogo.png">
         </a>
     </div>
     <div class="menu-block customscroll">

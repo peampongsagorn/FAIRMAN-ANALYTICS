@@ -5,11 +5,20 @@ require_once('../../config/connection.php');
 
 $currentYear = date('Y');
 $filterData = $_SESSION['filter'] ?? null;
-$sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+// $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+$currentYear = date('Y'); // ปีปัจจุบัน
+$startYear = $currentYear . '-01-01'; // วันที่ 1 มกราคมของปีปัจจุบัน
+$currentDate = date('Y-m-d'); // วันที่ปัจจุบัน
+
+$sqlConditions_actual = "date_start BETWEEN '{$startYear}' AND '{$currentDate}'";
+
 
 if ($filterData) {
     
-
+    if (!empty($filterData['startMonthDate']) && !empty($filterData['endMonthDateCurrent'])) {
+        $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+ 
+    }
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
     }

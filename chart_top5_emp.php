@@ -4,9 +4,20 @@ require_once('../../config/connection.php');
 
 $currentYear = date('Y');
 $filterData = $_SESSION['filter'] ?? null;
-$sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+// $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+$currentYear = date('Y'); // ปีปัจจุบัน
+$startYear = $currentYear . '-01-01'; // วันที่ 1 มกราคมของปีปัจจุบัน
+$currentDate = date('Y-m-d'); // วันที่ปัจจุบัน
+
+$sqlConditions_actual = "date_start BETWEEN '{$startYear}' AND '{$currentDate}'";
+
 
 if ($filterData) {
+
+    if (!empty($filterData['startMonthDate']) && !empty($filterData['endMonthDateCurrent'])) {
+        $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+ 
+    }
 
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
@@ -136,27 +147,27 @@ $top10 = array_slice($sortedData, 0, 10);
 <head>
 <style>
     .table {
-        width: 90%; /* ลดขนาดความกว้างของตาราง */
-        margin: auto; /* จัดตั้งตรงกลาง */
+        width: 90%;
+        margin: auto;
     }
 
     thead th {
-        font-size: 14px; /* ลดขนาดตัวอักษรในหัวตาราง */
+        font-size: 14px;
     }
 
     tbody {
-        font-size: 12px; /* ลดขนาดตัวอักษรในเนื้อหาตาราง */
+        font-size: 12px;
     }
 
     th, td {
-        padding: 3px; /* ลดระยะห่างภายในคอลัมน์ */
+        padding: 3px;
     }
 </style>
 
 </head>
 
 <body>
-    <table class="table table-striped">
+    <table class="data-table2 table striped hover nowrap">
         <thead>
             <tr>
                 <th scope="col">NAME</th>
@@ -183,5 +194,42 @@ $top10 = array_slice($sortedData, 0, 10);
         </tbody>
     </table>
 </body>
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable with custom options
+        var dataTable = $('.data-table2').DataTable({
+            "lengthMenu": [4, 5, 6, 7, 8], // เลือกจำนวนแถวที่แสดง
+            "pageLength": 5, // จำนวนแถวที่แสดงต่อหน้าเริ่มต้น
+            "dom": '<"d-flex justify-content-between"lf>rt<"d-flex justify-content-between"ip><"clear">', // ตำแหน่งของ elements
+            "language": {
+                
+                "zeroRecords": "ไม่พบข้อมูล",
+                "info": "แสดงหน้าที่ PAGE จาก PAGES",
+                "infoEmpty": "ไม่มีข้อมูลที่แสดง",
+                "infoFiltered": "(กรองจากทั้งหมด MAX รายการ)",
+                "search": "ค้นหา:",
+                "paginate": {
+                    "first": "หน้าแรก",
+                    "last": "หน้าสุดท้าย",
+                    "next": "ถัดไป",
+                    "previous": "ก่อนหน้า"
+                }
+            }
+        });
 
+        // Add Bootstrap styling to length dropdown and search input
+        $('select[name="dataTables_length"]').addClass('form-control form-control-sm');
+        $('input[type="search"]').addClass('form-control form-control-sm');
+
+        // Trigger DataTables redraw on select change
+        $('select[name="dataTables_length"]').change(function() {
+            dataTable.draw();
+        });
+
+        // Trigger DataTables search on input change
+        $('input[type="search"]').on('input', function() {
+            dataTable.search(this.value).draw();
+        });
+    });
+</script>
 </html>

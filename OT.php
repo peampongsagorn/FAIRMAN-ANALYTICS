@@ -1,6 +1,7 @@
 <?php
 
 require_once('../../config/connection.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +122,7 @@ require_once('../../config/connection.php');
 
     <div class="main-container">
         <div class="pd-ltr-20">
-            <div class="card-box upper-box pd-20 height-100-p mb-30">
+            <div class="card-box upper-box pd-20 height-100-p mb-30" >
                 <h4 class="font-20 weight-500 mb-20 text-capitalize" style="margin-bottom: 0px">
                     วิเคราะห์ข้อมูลการทำ OT
                 </h4>
@@ -170,11 +171,11 @@ require_once('../../config/connection.php');
                         </div>
                     </div>
                 </div>
-
-                <?php include('../analytics/chart_planning_trend.php') ?>
+                <!-- <?php include('../analytics/chart_ot_per_person.php') ?> -->
+                <!-- <?php include('../analytics/chart_planning_trend.php') ?> -->
                 <?php include('../analytics/chart_ot_type_drilldown.php') ?>
-                <?php include('../analytics/chart_top5_emp.php') ?>
                 <?php include('../analytics/chart_ot_per_person.php') ?>
+                <?php include('../analytics/chart_top5_emp.php') ?>
             </div>
         </div>
         <?php include('../analytics/include/footer.php') ?>

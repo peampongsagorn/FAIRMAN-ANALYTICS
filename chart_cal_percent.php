@@ -1,12 +1,19 @@
 <?php
 //session_start();
-// require_once('C:\xampp\htdocs\dashboard analytics\config\connection.php');
 require_once('../../config/connection.php');
 $currentYear = date('Y');
 $filterData = $_SESSION['filter'] ?? null;
 $sqlConditions_plan = "year = '{$currentYear}'"; // เงื่อนไขเริ่มต้นคือข้อมูลของปีปัจจุบัน
 $sqlConditions_actual_working_day = "year = '{$currentYear}'";
-$sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+// $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'"; //แก้การรับค่าจากวัน
+// echo $filterData['startMonthDate'];
+// echo $filterData['endMonthDateCurrent'];
+// echo $
+$currentYear = date('Y'); // ปีปัจจุบัน
+$startYear = $currentYear . '-01-01'; // วันที่ 1 มกราคมของปีปัจจุบัน
+$currentDate = date('Y-m-d'); // วันที่ปัจจุบัน
+
+$sqlConditions_actual = "date_start BETWEEN '{$startYear}' AND '{$currentDate}'";
 
 
 //query %Plan OT compare Normal Time
@@ -89,6 +96,10 @@ if ($data['totalOTPercent'] != 0) {
 //query ชั่วโมงการทำงานจริง
 if ($filterData) {
     
+    if (!empty($filterData['startMonthDate']) && !empty($filterData['endMonthDateCurrent'])) {
+        $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+ 
+    }
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
     }
@@ -140,7 +151,8 @@ $sql = "SELECT
         INNER JOIN
             business b on sb.business_id = b.business_id
         WHERE 
-            {$sqlConditions_actual}";
+            {$sqlConditions_actual}
+        ";
 
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {

@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
     $endYearCurrent = date('Y', strtotime($receivedEndMonth_Current));
     $endMonthCurrent = date('m', strtotime($receivedEndMonth_Current));
 
-    //$submittedData = "Submitted Data: Org -> {$_POST['organizationID']}";
+    //$submittedData = "Submitted Data: start -> $startMonthDate , End -> $endMonthDate_Current";
     // เก็บข้อมูลไว้ใน session
     $_SESSION['filter'] = [
         'startMonthDate' => $startMonthDate,

@@ -100,17 +100,14 @@ if ($result) {
     }
 }
 
-// foreach ($PlanOtData as $year => $months) {
-//     foreach ($months as $month => $data) {
-//         echo "Year: $year, Month: $month, Plan FIX: {$data['Plan_FIX']}, Plan NONFIX: {$data['Plan_NONFIX']}<br>";
-//     }
-// }
-
 
 //query ชั่วโมงทำงานจริงแบ่งตามเดือน
 if ($filterData) {
     
-   
+    if (!empty($filterData['startMonthDate']) && !empty($filterData['endMonthDateCurrent'])) {
+        $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
+ 
+    }
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
     }
@@ -174,11 +171,38 @@ $sql = "SELECT
                 ott.type_fix_nonfix
                 ";
 
+// $stmt = sqlsrv_query($conn, $sql);
+// if ($stmt === false) {
+//     die(print_r(sqlsrv_errors(), true));
+// }
+// $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+// $ActualOtData = [];
+// while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+//     $year = $row['ActualOT_Year'];
+//     $month = $row['ActualOT_Month'];
+//     $type = $row['type_fix_nonfix'];
+//     $hours = $row['SUM_HOURS'];
+
+//     // ตรวจสอบและสร้าง array ถ้ายังไม่มี
+//     if (!isset($ActualOtData[$year])) {
+//         $ActualOtData[$year] = [];
+//     }
+//     if (!isset($ActualOtData[$year][$month])) {
+//         $ActualOtData[$year][$month] = ['FIX' => 0, 'NONFIX' => 0];
+//     }
+
+//     // สะสมข้อมูลจำนวนชั่วโมงตามประเภท OT
+//     if ($type === 'FIX') {
+//         $ActualOtData[$year][$month]['FIX'] += $hours;
+//     } else if ($type === 'NONFIX') {
+//         $ActualOtData[$year][$month]['NONFIX'] += $hours;
+//     }
+// }
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
 }
-$row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
 $ActualOtData = [];
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
@@ -187,7 +211,6 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     $type = $row['type_fix_nonfix'];
     $hours = $row['SUM_HOURS'];
 
-    // ตรวจสอบและสร้าง array ถ้ายังไม่มี
     if (!isset($ActualOtData[$year])) {
         $ActualOtData[$year] = [];
     }
@@ -202,6 +225,7 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
         $ActualOtData[$year][$month]['NONFIX'] += $hours;
     }
 }
+
 
 // foreach ($ActualOtData as $year => $months) {
 //     foreach ($months as $month => $data) {

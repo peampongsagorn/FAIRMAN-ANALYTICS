@@ -137,7 +137,8 @@ $chartDataJson = json_encode($chartData);
                 bars: 'horizontal',
                 hAxis: { format: 'decimal' },
                 height: 400,
-                colors: ['#1b9e77', '#d95f02', '#7570b3']
+                colors: ['#1b9e77', '#d95f02', '#7570b3'],
+                legend: { position: 'bottom' }
             };
 
             var chart = new google.charts.Bar(document.getElementById('barchart_material'));
@@ -147,7 +148,7 @@ $chartDataJson = json_encode($chartData);
 </head>
 
 <body>
-    <div id="barchart_material" style="width: 800px; height: 500px;"></div>
+    <div id="barchart_material" style="width: 600px; height: 300px;"></div>
 </body>
 
 </html>

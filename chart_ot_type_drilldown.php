@@ -14,33 +14,26 @@ $sqlConditions_actual = "date_start BETWEEN '{$startYear}' AND '{$currentDate}'"
 
 
 if ($filterData) {
-    
+
     if (!empty($filterData['startMonthDate']) && !empty($filterData['endMonthDateCurrent'])) {
         $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
- 
+
     }
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
-    }
-    elseif (!empty($filterData['departmentId'])) {
+    } elseif (!empty($filterData['departmentId'])) {
         $sqlConditions_actual .= " AND s.department_id = '{$filterData['departmentId']}'";
-    }
-    elseif (!empty($filterData['divisionId'])) {
+    } elseif (!empty($filterData['divisionId'])) {
         $sqlConditions_actual .= " AND d.division_id = '{$filterData['divisionId']}'";
-    }
-    elseif (!empty($filterData['locationId'])) {
+    } elseif (!empty($filterData['locationId'])) {
         $sqlConditions_actual .= " AND dv.location_id = '{$filterData['locationId']}'";
-    }
-    elseif (!empty($filterData['companyId'])) {
+    } elseif (!empty($filterData['companyId'])) {
         $sqlConditions_actual .= " AND l.company_id = '{$filterData['companyId']}'";
-    }
-    elseif (!empty($filterData['organizationId'])) {
+    } elseif (!empty($filterData['organizationId'])) {
         $sqlConditions_actual .= " AND c.organization_id = '{$filterData['organizationId']}'";
-    }
-    elseif (!empty($filterData['sub_businessId'])) {
+    } elseif (!empty($filterData['sub_businessId'])) {
         $sqlConditions_actual .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
-    }
-    elseif (!empty($filterData['businessId'])) {
+    } elseif (!empty($filterData['businessId'])) {
         $sqlConditions_actual .= " AND sb.business_id = '{$filterData['businessId']}'";
     }
 }
@@ -125,70 +118,91 @@ $ot_data_json = json_encode($ot_data);
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    var chart; // Global variable for the chart
-    var data; // Global variable for the chart data
-    var ot_data = JSON.parse('<?php echo $ot_data_json; ?>'); // ข้อมูล OT ในรูปแบบ JSON
+        var chart; // Global variable for the chart
+        var data; // Global variable for the chart data
+        var ot_data = JSON.parse('<?php echo $ot_data_json; ?>'); // ข้อมูล OT ในรูปแบบ JSON
 
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawDonutChart);
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawDonutChart);
 
-    function drawDonutChart() {
-        data = new google.visualization.DataTable();
-        data.addColumn('string', 'OT Type');
-        data.addColumn('number', 'Hours');
+        function drawDonutChart() {
+            data = new google.visualization.DataTable();
+            data.addColumn('string', 'OT Type');
+            data.addColumn('number', 'Hours');
 
-        for (var type in ot_data) {
-            if (ot_data.hasOwnProperty(type)) {
-                data.addRow([type, ot_data[type]['total_hours']]);
-            }
-        }
-
-        var options = {
-            title: 'Total Hours by OT Type',
-            pieHole: 0.4,
-            sliceVisibilityThreshold: 0
-        };
-
-        chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-
-        google.visualization.events.addListener(chart, 'select', selectHandler);
-    }
-
-    function selectHandler() {
-        var selectedItem = chart.getSelection()[0];
-        if (selectedItem) {
-            var type = data.getValue(selectedItem.row, 0);
-            drawDetailChart(type, ot_data[type]['details']);
-        }
-    }
-
-    function drawDetailChart(type, details) {
-        var detailData = new google.visualization.DataTable();
-        detailData.addColumn('string', 'OT Name');
-        detailData.addColumn('number', 'Hours');
-
-        for (var name in details) {
-            if (details.hasOwnProperty(name)) {
-                // ตรวจสอบและแปลงค่าเป็นตัวเลข
-                var hours = parseFloat(details[name]);
-                if (!isNaN(hours)) {
-                    detailData.addRow([name, hours]);
+            for (var type in ot_data) {
+                if (ot_data.hasOwnProperty(type)) {
+                    data.addRow([type, ot_data[type]['total_hours']]);
                 }
             }
+
+            var options = {
+                title: 'Total Hours by OT Type',
+                pieHole: 0.4,
+                width: '100%', // ใช้ 100% เพื่อให้กราฟปรับขนาดตามคอนเทนเนอร์
+                height: '200px', // กำหนดความสูงตามที่คุณต้องการ
+                chartArea: {
+                    left: '5%',
+                    top: '5%',
+                    width: '90%',
+                    height: '60%'
+                },
+                legend: { position: 'bottom' }
+            };
+
+            chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+
+            google.visualization.events.addListener(chart, 'select', selectHandler);
+            if (ot_data.hasOwnProperty('FIX')) {
+                drawDetailChart('FIX', ot_data['FIX']['details']);
+            }
         }
 
-        var options = {
-            title: 'Detail Hours for ' + type,
-            pieHole: 0.4
-        };
+        function selectHandler() {
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+                var type = data.getValue(selectedItem.row, 0);
+                drawDetailChart(type, ot_data[type]['details']);
+            }
+        }
 
-        var detailChart = new google.visualization.PieChart(document.getElementById('detailchart'));
-        detailChart.draw(detailData, options);
-    }
+        function drawDetailChart(type, details) {
+            var detailData = new google.visualization.DataTable();
+            detailData.addColumn('string', 'OT Name');
+            detailData.addColumn('number', 'Hours');
+
+            for (var name in details) {
+                if (details.hasOwnProperty(name)) {
+                    // ตรวจสอบและแปลงค่าเป็นตัวเลข
+                    var hours = parseFloat(details[name]);
+                    if (!isNaN(hours)) {
+                        detailData.addRow([name, hours]);
+                    }
+                }
+            }
+
+            var options = {
+                title: 'Detail Hours for ' + type,
+                pieHole: 0.4,
+                width: '100%', // ใช้ 100% เพื่อให้กราฟปรับขนาดตามคอนเทนเนอร์
+                height: '200px', // กำหนดความสูงตามที่คุณต้องการ
+                chartArea: {
+                    left: '5%',
+                    top: '5%',
+                    width: '90%',
+                    height: '60%'
+                },
+                legend: { position: 'bottom' }
+            };
+
+            var detailChart = new google.visualization.PieChart(document.getElementById('detailchart'));
+            detailChart.draw(detailData, options);
+        }
     </script>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -196,16 +210,18 @@ $ot_data_json = json_encode($ot_data);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-5">
-        <div id="donutchart" style="width: 150%; height: 400px;"></div>
-      </div>
-      <div class="col-md-5">
-        <div id="detailchart" style="width: 150%; height: 400px;"></div>
-      </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <div id="donutchart" style="width: 100%; height: 300px;"></div>
+            </div>
+            <div class="col-md-5">
+                <div id="detailchart" style="width: 100%; height: 300px;"></div>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
+
 </html>

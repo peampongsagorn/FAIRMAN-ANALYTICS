@@ -282,7 +282,7 @@ $actualJson = json_encode($ActualOtData);
     </script>
 </head>
 <body>
-    <div id="chart_div" style="width: 780px; height: 300px;"></div>
+    <div id="chart_div" style="width: 600px; height: 300px;"></div>
 </body>
 </html>
 

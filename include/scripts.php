@@ -8,6 +8,7 @@
 <script src="../../src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="../../src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <script src="../../vendors/scripts/datagraph.js"></script>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
 <!-- buttons for Export datatable -->
 <script src="../../src/plugins/datatables/js/dataTables.buttons.min.js"></script>

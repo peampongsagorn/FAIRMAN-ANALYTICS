@@ -24,27 +24,20 @@ if ($filterData) {
 
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_plan .= " AND cc.section_id = '{$filterData['sectionId']}'";
-    }
-    elseif (!empty($filterData['departmentId'])) {
+    } elseif (!empty($filterData['departmentId'])) {
         $sqlConditions_plan .= " AND s.department_id = '{$filterData['departmentId']}'";
-    }
-    elseif (!empty($filterData['divisionId'])) {
+    } elseif (!empty($filterData['divisionId'])) {
         $sqlConditions_plan .= " AND d.division_id = '{$filterData['divisionId']}'";
-    }
-    elseif (!empty($filterData['locationId'])) {
+    } elseif (!empty($filterData['locationId'])) {
         $sqlConditions_plan .= " AND dv.location_id = '{$filterData['locationId']}'";
-    }
-    elseif (!empty($filterData['companyId'])) {
+    } elseif (!empty($filterData['companyId'])) {
         $sqlConditions_plan .= " AND l.company_id = '{$filterData['companyId']}'";
-    }
-    elseif (!empty($filterData['organizationId'])) {
+    } elseif (!empty($filterData['organizationId'])) {
         $sqlConditions_plan .= " AND c.organization_id = '{$filterData['organizationId']}'";
-    }
-    elseif (!empty($filterData['sub_businessId'])) {
+    } elseif (!empty($filterData['sub_businessId'])) {
         $sqlConditions_plan .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
-    }
-    elseif (!empty($filterData['businessId'])) {
-    $sqlConditions_plan .= " AND sb.business_id = '{$filterData['businessId']}'";
+    } elseif (!empty($filterData['businessId'])) {
+        $sqlConditions_plan .= " AND sb.business_id = '{$filterData['businessId']}'";
     }
 }
 
@@ -103,33 +96,26 @@ if ($result) {
 
 //query ชั่วโมงทำงานจริงแบ่งตามเดือน
 if ($filterData) {
-    
+
     if (!empty($filterData['startMonthDate']) && !empty($filterData['endMonthDateCurrent'])) {
         $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
- 
+
     }
     if (!empty($filterData['sectionId'])) {
         $sqlConditions_actual .= " AND cc.section_id = '{$filterData['sectionId']}'";
-    }
-    elseif (!empty($filterData['departmentId'])) {
+    } elseif (!empty($filterData['departmentId'])) {
         $sqlConditions_actual .= " AND s.department_id = '{$filterData['departmentId']}'";
-    }
-    elseif (!empty($filterData['divisionId'])) {
+    } elseif (!empty($filterData['divisionId'])) {
         $sqlConditions_actual .= " AND d.division_id = '{$filterData['divisionId']}'";
-    }
-    elseif (!empty($filterData['locationId'])) {
+    } elseif (!empty($filterData['locationId'])) {
         $sqlConditions_actual .= " AND dv.location_id = '{$filterData['locationId']}'";
-    }
-    elseif (!empty($filterData['companyId'])) {
+    } elseif (!empty($filterData['companyId'])) {
         $sqlConditions_actual .= " AND l.company_id = '{$filterData['companyId']}'";
-    }
-    elseif (!empty($filterData['organizationId'])) {
+    } elseif (!empty($filterData['organizationId'])) {
         $sqlConditions_actual .= " AND c.organization_id = '{$filterData['organizationId']}'";
-    }
-    elseif (!empty($filterData['sub_businessId'])) {
+    } elseif (!empty($filterData['sub_businessId'])) {
         $sqlConditions_actual .= " AND o.sub_business_id = '{$filterData['sub_businessId']}'";
-    }
-    elseif (!empty($filterData['businessId'])) {
+    } elseif (!empty($filterData['businessId'])) {
         $sqlConditions_actual .= " AND sb.business_id = '{$filterData['businessId']}'";
     }
 }
@@ -233,23 +219,24 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
 //     }
 // }
 
-$planJson = json_encode($PlanOtData); 
+$planJson = json_encode($PlanOtData);
 $actualJson = json_encode($ActualOtData);
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
 
-       
+
         function drawChart() {
             var planData = JSON.parse('<?php echo $planJson; ?>');
             var actualData = JSON.parse('<?php echo $actualJson; ?>');
-            
+
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'เดือน');
             data.addColumn('number', 'วางแผน FIX');
@@ -269,10 +256,30 @@ $actualJson = json_encode($ActualOtData);
 
             var options = {
                 title: 'แนวโน้มการวางแผน OT',
-                vAxis: {title: 'ชั่วโมง'},
-                hAxis: {title: 'เดือน'},
+                vAxis: {
+                    title: 'ชั่วโมง',
+                    textStyle: { color: 'white' } // กำหนดสีข้อความของแกน Y
+                },
+                hAxis: {
+                    title: 'เดือน',
+                    textStyle: { color: 'white' } // กำหนดสีข้อความของแกน X
+                },
                 seriesType: 'bars',
-                series: {2: {type: 'line'}, 3: {type: 'line'}}
+                series: {
+                    0: { color: '#0BF8DF' }, // สีแท่งกราฟสำหรับ 'วางแผน FIX'
+                    1: { color: '#15928E' }, // สีแท่งกราฟสำหรับ 'วางแผน NONFIX'
+                    2: { color: '#E5AC61', type: 'line' }, // สีกราฟเส้นสำหรับ 'จริง FIX'
+                    3: { color: '#EE943A', type: 'line' } // สีกราฟเส้นสำหรับ 'จริง NONFIX'
+                },
+                titleTextStyle: {
+                    color: 'white', // กำหนดสีหัวข้อของกราฟ
+                    fontSize: 16,
+                    bold: true
+                },
+                legend: { 
+                    textStyle: { color: 'white' } // กำหนดสีข้อความของ legend
+                },
+                backgroundColor: '#1C1D3A', // สีพื้นหลังของกราฟ
             };
 
             var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
@@ -281,8 +288,15 @@ $actualJson = json_encode($ActualOtData);
 
     </script>
 </head>
-<body>
-    <div id="chart_div" style="width: 600px; height: 300px;"></div>
-</body>
-</html>
 
+<body>
+    <div class="col" style="padding: 0; margin-right: 30px;">
+        <div style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080;">
+            <!-- กำหนดขนาดของ div ให้เป็น 100% เพื่อให้กราฟขยายเต็มพื้นที่ -->
+            <div id="chart_div" style="width: 100%; height:300px;"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

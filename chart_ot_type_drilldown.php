@@ -93,26 +93,6 @@ if ($result) {
     }
 }
 
-// echo $filterData['startMonthDate'];
-// echo "<br>";
-// echo $filterData['endMonthDateCurrent'];
-// echo "<br>";
-// echo $filterData['businessId'];
-// echo "<br>";
-// echo $filterData['sub_businessId'];
-// echo "<br>";
-// echo $filterData['organizationId'];
-// echo "<br>";
-// echo $filterData['companyId'];
-// echo "<br>";
-// echo $filterData['locationId'];
-// echo "<br>";
-// echo $filterData['divisionId'];
-// echo "<br>";
-// echo $filterData['departmentId'];
-// echo "<br>";
-// echo $filterData['sectionId'];
-
 $ot_data_json = json_encode($ot_data);
 ?>
 
@@ -141,17 +121,39 @@ $ot_data_json = json_encode($ot_data);
             }
 
             var options = {
-                title: 'Total Hours by OT Type',
+                title: 'Proportion Of Actual OT',
                 pieHole: 0.4,
-                width: '100%', // ใช้ 100% เพื่อให้กราฟปรับขนาดตามคอนเทนเนอร์
-                height: '200px', // กำหนดความสูงตามที่คุณต้องการ
+                colors: ['#0BF8DF', '#15928E'], // ตั้งค่าสีตามต้องการ
+                width: '90%',
+                height: 300, // ปรับขนาดความสูงตามที่ต้องการ
                 chartArea: {
-                    left: '5%',
-                    top: '5%',
-                    width: '90%',
-                    height: '60%'
+                    width: '70%', // ตั้งค่าความกว้างของพื้นที่กราฟ
+                    height: '70%' // ตั้งค่าความสูงของพื้นที่กราฟ
                 },
-                legend: { position: 'bottom' }
+                legend: {
+                    position: 'bottom', // ตั้งค่าตำแหน่งของ legend
+                    textStyle: {
+                        color: 'white', // ตั้งค่าสีของตัวอักษร
+                        fontSize: 10 // ตั้งค่าขนาดของตัวอักษร
+                    }
+                },
+                backgroundColor: '#1C1D3A', // ตั้งค่าสีพื้นหลังของกราฟ
+                titleTextStyle: {
+                    color: 'white', // ตั้งค่าสีของหัวข้อ
+                    fontSize: 14, // ตั้งค่าขนาดของหัวข้อ
+                    bold: true // ตั้งค่าหัวข้อให้เป็นตัวหนา
+                },
+                pieSliceText: 'both', // แสดงทั้งค่าจริงและเปอร์เซ็นต์
+                pieSliceTextStyle: {
+                    color: '#1C1D3A', // ตั้งค่าสีของตัวเลขและเปอร์เซ็นต์ที่แสดงบนชิ้นส่วน
+                    fontSize: 11, // ตั้งค่าขนาดของตัวอักษร
+                    bold: true // ตั้งค่าให้ข้อความเป็นตัวหนา
+                },
+                tooltip: {
+                    text: 'value' // ตั้งค่าให้ tooltip แสดงค่า
+                },
+
+
             };
 
             chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -189,15 +191,36 @@ $ot_data_json = json_encode($ot_data);
             var options = {
                 title: 'Detail Hours for ' + type,
                 pieHole: 0.4,
-                width: '100%', // ใช้ 100% เพื่อให้กราฟปรับขนาดตามคอนเทนเนอร์
-                height: '200px', // กำหนดความสูงตามที่คุณต้องการ
+                // colors: ['#0BF8DF', '#15928E'], // ตั้งค่าสีตามต้องการ
+                pieHole: 0.4,
+                width: '90%',
+                height: 300, // ปรับขนาดความสูงตามที่ต้องการ
                 chartArea: {
-                    left: '5%',
-                    top: '5%',
-                    width: '90%',
-                    height: '60%'
+                    width: '70%', // ตั้งค่าความกว้างของพื้นที่กราฟ
+                    height: '70%' // ตั้งค่าความสูงของพื้นที่กราฟ
                 },
-                legend: { position: 'bottom' }
+                legend: {
+                    position: 'bottom', // ตั้งค่าตำแหน่งของ legend
+                    textStyle: {
+                        color: 'white', // ตั้งค่าสีของตัวอักษร
+                        fontSize: 10 // ตั้งค่าขนาดของตัวอักษร
+                    }
+                },
+                backgroundColor: '#1C1D3A', // ตั้งค่าสีพื้นหลังของกราฟ
+                titleTextStyle: {
+                    color: 'white', // ตั้งค่าสีของหัวข้อ
+                    fontSize: 14, // ตั้งค่าขนาดของหัวข้อ
+                    bold: true // ตั้งค่าหัวข้อให้เป็นตัวหนา
+                },
+                pieSliceText: 'both', // แสดงทั้งค่าจริงและเปอร์เซ็นต์
+                pieSliceTextStyle: {
+                    color: '#1C1D3A', // ตั้งค่าสีของตัวเลขและเปอร์เซ็นต์ที่แสดงบนชิ้นส่วน
+                    fontSize: 11, // ตั้งค่าขนาดของตัวอักษร
+                    bold: true // ตั้งค่าให้ข้อความเป็นตัวหนา
+                },
+                tooltip: {
+                    text: 'value' // ตั้งค่าให้ tooltip แสดงค่า
+                },
             };
 
             var detailChart = new google.visualization.PieChart(document.getElementById('detailchart'));
@@ -212,16 +235,51 @@ $ot_data_json = json_encode($ot_data);
 </head>
 
 <body>
-    <div class="container-fluid">
+    <!-- <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <div id="donutchart" style="width: 100%; height: 300px;"></div>
+                <div id="donutchart" style="width: 380px; height: 320px;"></div>
             </div>
             <div class="col-md-5">
-                <div id="detailchart" style="width: 100%; height: 300px;"></div>
+                <div id="detailchart" style="width: 380px; height: 320px;"></div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-5"
+                style="border: 2px solid #3E4080; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080; margin: 10px;">
+                <div id="donutchart" style="width: 100%; height: 320px;"></div>
+            </div>
+            <div class="col-md-5"
+                style="border: 2px solid #3E4080; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080; margin: 10px;">
+                <div id="detailchart" style="width: 100%; height: 320px;"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5" style="padding: 0; margin: 5px;">
+                <div style="border: 2px solid #3E4080; max-width: 400px; box-shadow: 2px 4px 5px #3E4080;">
+                    <!-- ตั้งค่าขนาดของ div ที่มีแผนภูมิให้ตรงกับขนาดของ div ภายนอก -->
+                    <div id="donutchart" style="width: 100%; max-width: 400px; height:300px;"></div>
+                </div>
+            </div>
+            <div class="col-md-5" style="padding: 0; margin-left: 50px;">
+                <div style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080;">
+                    <!-- ตั้งค่าขนาดของ div ที่มีแผนภูมิให้ตรงกับขนาดของ div ภายนอก -->
+                    <div id="detailchart" style="width: 100%; max-width: 400px; height: 300px;"></div>
+                </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
 </body>
 
 </html>

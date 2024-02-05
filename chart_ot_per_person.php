@@ -148,7 +148,7 @@ $chartDataJson = json_encode($chartData);
 </head>
 
 <body>
-    <div id="barchart_material" style="width: 600px; height: 300px;"></div>
+    <div id="barchart_material" style="width: 550px; height: 300px;"></div>
 </body>
 
 </html>

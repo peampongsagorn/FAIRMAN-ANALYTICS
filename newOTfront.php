@@ -21,8 +21,8 @@ require_once('../../config/connection.php');
 
                 <!-- หัวข้อรายงาน OT -->
                 <div class="row mb-4">
-                    <div class="col-2">
-                        <h2 class="text-white bg-dark p-2" style=" text-align: center; border: 2px solid #3E4080;
+                    <div class="col-3">
+                        <h2 class="text-white bg-dark p-2" style="background-color: #1C1D3A ;text-align: center; border: 2px solid #3E4080;
                         border-radius: 15px; box-shadow: 2px 4px 5px #3E4080">รายงาน OT</h2>
                     </div>
                     <div class="col-4 justify-content-end">
@@ -90,133 +90,15 @@ require_once('../../config/connection.php');
                         </div>
                     </div>
                 </div>
-                <!-- <div class="container-fluid" style="background-color: white; padding: 15px; margin-bottom: 20px">
-                    <div class="row no-gutters">
-                        <div class="col-md-3 mb-3 d-flex justify-content-center">
-                            <?php include('../analytics/chart_cal_percent.php') ?>
-                            <div class="card custom-card text-white"
-                                style="background-color: #41446B; flex-grow: 1; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080">
-                                <div class="card-header text-center"
-                                    style="background-color: #313456; border-top-right-radius: 15px; border-top-left-radius: 15px;">
-                                    Plan % Normal Time
-                                </div>
-                                <div class="card-body d-flex align-items-center justify-content-center"
-                                    style="height: 70px;">
-                                    <h5 class="card-title">
-                                        <?php
-                                        echo "<span style='font-size: 40px; color: white;'>" . number_format($percentage_plan, 2) . "%</span><br>";
-                                        ?>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3 d-flex justify-content-center">
-                            <div class="card custom-card text-white"
-                                style="background-color: #41446B; flex-grow: 1; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080">
-                                <div class="card-header text-center"
-                                    style="background-color: #313456; border-top-right-radius: 15px; border-top-left-radius: 15px;">
-                                    Actual % Normal Time
-                                </div>
-                                <div class="card-body d-flex align-items-center justify-content-center"
-                                    style="height: 70px;">
-                                    <h5 class="card-title">
-                                        <?php
-                                        echo "<span style='font-size: 40px; color: white;'>" . number_format($percentage_actual, 2) . "%</span><br>";
-                                        ?>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3 d-flex justify-content-center">
-                            <div class="card custom-card text-white"
-                                style="background-color: #41446B; flex-grow: 1; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080">
-                                <div class="card-header text-center"
-                                    style="background-color: #313456; border-top-right-radius: 15px; border-top-left-radius: 15px;">
-                                    Percentage Difference
-                                </div>
-                                <div class="card-body d-flex align-items-center justify-content-center"
-                                    style="height: 70px;">
-                                    <h5 class="card-title">
-                                        <?php
-                                        echo "<span style='font-size: 40px; color: white;'>" . number_format($diff_percentage_plan_actual, 2) . "%</span><br>";
-                                        ?>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="container-fluid" style="background-color: white; padding: 20px; margin-bottom: 20px"> -->
-                <!-- <div class="row justify-content-center"> -->
-                <!-- <div style="display: flex; justify-content: center; align-items: center; background-color: white; padding: 20px; margin-bottom: 20px;">
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-                        <div class="col-auto mb-3 d-flex">
-                            <div class="card custom-card text-white"
-                                style="background-color: #41446B; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080; width: 207.75 mm; ">
-                                <div class="card-header text-center"
-                                    style="background-color: #313456; border-top-right-radius: 15px; border-top-left-radius: 15px;">
-                                    Plan % Normal Time
-                                </div>
-                                <div class="card-body d-flex align-items-center justify-content-center"
-                                    style="height: 70px;">
-                                    <h5 class="card-title">
-                                        <?php
-                                        echo "<span style='font-size: 40px; color: white;'>" . number_format($percentage_plan, 2) . "%</span><br>";
-                                        ?>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto mb-3 d-flex">
-                            <div class="card custom-card text-white"
-                                style="background-color: #41446B; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080">
-                                <div class="card-header text-center"
-                                    style="background-color: #313456; border-top-right-radius: 15px; border-top-left-radius: 15px;">
-                                    Actual % Normal Time
-                                </div>
-                                <div class="card-body d-flex align-items-center justify-content-center"
-                                    style="height: 70px;">
-                                    <h5 class="card-title">
-                                        <?php
-                                        echo "<span style='font-size: 40px; color: white;'>" . number_format($percentage_actual, 2) . "%</span><br>";
-                                        ?>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto mb-3 d-flex">
-                            <div class="card custom-card text-white"
-                                style="background-color: #41446B; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080">
-                                <div class="card-header text-center"
-                                    style="background-color: #313456; border-top-right-radius: 15px; border-top-left-radius: 15px;">
-                                    Percentage Difference
-                                </div>
-                                <div class="card-body d-flex align-items-center justify-content-center"
-                                    style="height: 70px;">
-                                    <h5 class="card-title">
-                                        <?php
-                                        echo "<span style='font-size: 40px; color: white;'>" . number_format($diff_percentage_plan_actual, 2) . "%</span><br>";
-                                        ?>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-
-
-
-
-
-
+                
                 <!-- กราฟแนวโน้มการวางแผน OT -->
                 <div class="row">
                     <!-- สัดส่วนของ OT จริง -->
-                    <div class="col-md-6">
+                    <div class="col-md-6" >
                         <?php include('../analytics/chart_ot_type_drilldown.php'); ?>
                     </div>
-                    <div class="col-md-6">
+                    
+                    <div class="col-md-6" >
                         <?php include('../analytics/chart_planning_trend.php'); ?>
                     </div>
                 </div>

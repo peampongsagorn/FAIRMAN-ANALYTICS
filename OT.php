@@ -17,7 +17,7 @@ require_once('../../config/connection.php');
 
     <div class="main-container">
         <div class="pd-ltr-20">
-            <div class="card-box lower-box pd-20 mb-30" style="background-color: #212233;  min-height: 1100px">
+            <div class="card-box lower-box pd-20 mb-30" style="background-color: #eeeeee;  min-height: 1100px">
 
                 <!-- หัวข้อรายงาน OT -->
                 <div class="row mb-4">

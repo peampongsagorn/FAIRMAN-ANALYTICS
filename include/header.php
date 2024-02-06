@@ -264,6 +264,23 @@ if (
             box-shadow: 2px 4px 5px #3E4080; /* สไตล์เงา */
         }
 
+        #donutchart {
+            background-color: #1C1D3A; /* สีพื้นหลังของ div */
+            border: 2px solid #3E4080; /* สีขอบ */
+            box-shadow: 2px 4px 5px #3E4080; /* สไตล์เงา */
+        }
+
+        #detailchart {
+            background-color: #1C1D3A; /* สีพื้นหลังของ div */
+            border: 2px solid #3E4080; /* สีขอบ */
+            box-shadow: 2px 4px 5px #3E4080; /* สไตล์เงา */
+        }
+        
+        .data-table2 td {
+            border: 2px solid #757575; /* สีขอบของช่อง */
+            padding: 8px; /* ระยะห่างของเนื้อหาจากขอบ */
+        }
+
         /*trend*/
         /* #donutchart {
             background-color: #fff;

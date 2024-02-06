@@ -143,9 +143,27 @@ $chartDataJson = json_encode($chartData);
                 hAxis: { format: 'decimal' },
                 height: 400,
                 colors: ['#1b9e77', '#d95f02', '#7570b3'],
-                legend: { position: 'bottom', textStyle: {color: 'white', fontSize: 12} },
+                legend: {
+                    position: 'top', // ตั้งค่าตำแหน่งของ legend
+                    textStyle: {
+                        color: 'white', // ตั้งค่าสีของตัวอักษร
+                        fontSize: 12 // ตั้งค่าขนาดของตัวอักษร
+                    }
+                },
+                vAxis: {
+                    title: 'ชั่วโมง',
+                    textStyle: { color: 'white' } // กำหนดสีข้อความของแกน Y
+                },
+                hAxis: {
+                    title: 'เดือน',
+                    textStyle: { color: 'white' } // กำหนดสีข้อความของแกน X
+                },
+                titleTextStyle: {
+                    color: 'white', // กำหนดสีหัวข้อของกราฟ
+                    fontSize: 16,
+                    bold: true
+                },
             };
-
             
 
             var chart = new google.charts.Bar(document.getElementById('barchart_material'));

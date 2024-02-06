@@ -195,7 +195,7 @@ $top50 = array_slice($sortedData, 0, 50);
 </body> -->
 <body>
     <table class="data-table2 table striped hover nowrap" style="width: 100%; border-collapse: collapse; border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080; height: 100%">
-        <thead style="background-color: #212233; color: #fff;">
+        <thead style="background-color: #1C1D3A; color: white;">
             <tr>
                 <th scope="col">FULLNAME_T</th>
                 <th scope="col">ชั่วโมงทั้งหมด</th>
@@ -207,7 +207,7 @@ $top50 = array_slice($sortedData, 0, 50);
         <tbody>
             <?php
             foreach ($sortedData as $item) {
-                echo '<tr style="background-color: #2A2D3E; color: #fff;">';
+                echo '<tr style="background-color: #D4E8E5; color: #757575;">';
                 echo '<td>' . htmlspecialchars($item['name']) . '</td>';
                 echo '<td>' . number_format($item['totalHours'], 2) . '</td>';
                 echo '<td>' . number_format($item['NONFIX'], 2) . ' (' . number_format(($item['NONFIX'] / $item['totalHours']) * 100, 2) . '%)</td>';
@@ -230,7 +230,7 @@ $top50 = array_slice($sortedData, 0, 50);
             "language": {
                 
                 "zeroRecords": "ไม่พบข้อมูล",
-                "info": "แสดงหน้าที่ PAGE จาก PAGES",
+                // "info": "แสดงหน้าที่ PAGE จาก PAGES",
                 "infoEmpty": "ไม่มีข้อมูลที่แสดง",
                 "infoFiltered": "(กรองจากทั้งหมด MAX รายการ)",
                 "search": "ค้นหา:",

@@ -189,7 +189,8 @@ $ot_data_json = json_encode($ot_data);
             var options = {
                 title: 'Detail Hours for ' + type,
                 pieHole: 0.4,
-                // colors: ['#0BF8DF', '#15928E'], // ตั้งค่าสีตามต้องการ
+                colors: ['#92B5B6', '#004A4F', '#199BA7', '#15323A', '#F39D82', '#C7D090',
+                         '#D4C0B2', '#376C66', '#A2C99F', '#DDA4A5', '#065C76'], // ตั้งค่าสีตามต้องการ
                 pieHole: 0.4,
                 width: '100%',
                 height: 300, // ปรับขนาดความสูงตามที่ต้องการ
@@ -212,7 +213,7 @@ $ot_data_json = json_encode($ot_data);
                 },
                 pieSliceText: 'both', // แสดงทั้งค่าจริงและเปอร์เซ็นต์
                 pieSliceTextStyle: {
-                    color: '#1C1D3A', // ตั้งค่าสีของตัวเลขและเปอร์เซ็นต์ที่แสดงบนชิ้นส่วน
+                    color: 'white', // ตั้งค่าสีของตัวเลขและเปอร์เซ็นต์ที่แสดงบนชิ้นส่วน
                     fontSize: 11, // ตั้งค่าขนาดของตัวอักษร
                     bold: true // ตั้งค่าให้ข้อความเป็นตัวหนา
                 },
@@ -237,18 +238,28 @@ $ot_data_json = json_encode($ot_data);
         <div class="row">
             <div class="col-md-5" style="padding: 0; margin: 5px;">
                 <div style="border: 2px solid #3E4080; max-width: 400px; box-shadow: 2px 4px 5px #3E4080;">
-                    <!-- ตั้งค่าขนาดของ div ที่มีแผนภูมิให้ตรงกับขนาดของ div ภายนอก -->
                     <div id="donutchart" style="width: 100%;  height:300px;"></div>
                 </div>
             </div>
             <div class="col-md-5" style="padding: 0; margin-left: 50px;">
                 <div style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080;">
-                    <!-- ตั้งค่าขนาดของ div ที่มีแผนภูมิให้ตรงกับขนาดของ div ภายนอก -->
                     <div id="detailchart" style="width: 100%;  height: 300px;"></div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-5" style="padding: 0; margin: 5px;">
+                <div id="donutchart"
+                    style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080; width: 100%; height: 100%;">
+                </div>
+                <div id="detailchart"
+                    style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080; width: 100%; height: 100%;">
+                </div>
+            </div>
+        </div>
+    </div> -->
 </body>
 
 </html>

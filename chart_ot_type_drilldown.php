@@ -1,11 +1,9 @@
 <?php
 //session_start();
-// require_once('C:\xampp\htdocs\dashboard analytics\config\connection.php');
 require_once('../../config/connection.php');
 
 $currentYear = date('Y');
 $filterData = $_SESSION['filter'] ?? null;
-// $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
 $currentYear = date('Y'); // ปีปัจจุบัน
 $startYear = $currentYear . '-01-01'; // วันที่ 1 มกราคมของปีปัจจุบัน
 $currentDate = date('Y-m-d'); // วันที่ปัจจุบัน
@@ -49,7 +47,7 @@ $sql = "SELECT
         INNER JOIN 
             employee as e ON otr.card_id = e.card_id
         INNER JOIN 
-            cost_center as cc ON e.cost_center_organization_id = cc.cost_center_id
+            cost_center as cc ON e.cost_center_payment_id = cc.cost_center_id
         INNER JOIN 
             section as s ON cc.section_id = s.section_id
         INNER JOIN

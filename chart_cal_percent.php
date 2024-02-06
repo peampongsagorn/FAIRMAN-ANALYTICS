@@ -133,7 +133,7 @@ $sql = "SELECT
         INNER JOIN 
             employee e ON otr.card_id = e.card_id
         INNER JOIN 
-            cost_center cc ON e.cost_center_organization_id = cc.cost_center_id
+            cost_center cc ON e.cost_center_payment_id = cc.cost_center_id
         INNER JOIN 
             section s ON cc.section_id = s.section_id
         INNER JOIN
@@ -175,7 +175,7 @@ $sql = "SELECT
         INNER JOIN 
             employee e ON otr.card_id = e.card_id
         INNER JOIN 
-            cost_center cc ON e.cost_center_organization_id = cc.cost_center_id
+            cost_center cc ON e.cost_center_payment_id = cc.cost_center_id
         INNER JOIN 
             section s ON cc.section_id = s.section_id
         INNER JOIN

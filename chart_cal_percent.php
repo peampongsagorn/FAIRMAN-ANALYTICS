@@ -314,9 +314,9 @@ if ($totalOtHoursSum != 0) {
 $diff_percentage_plan_actual = $percentage_plan - $percentage_actual; 
 
 if ($percentage_plan > $percentage_actual){
-    $colorClass = 'bg-success';
+    $colorClass = '#09B39D';
 } else {
-    $colorClass = 'bg-danger';
+    $colorClass = '#F06549';
 }
 
 ?>

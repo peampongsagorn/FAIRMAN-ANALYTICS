@@ -1,7 +1,5 @@
 <?php
-//session_start(); // เรียกใช้ session_start() ก่อนที่จะใช้ session
 require_once('C:\xampp\htdocs\dashboard analytics\config\connection.php');
-// require_once('../../../config/connection.php');
 // ตรวจสอบว่ามี Session 'line_id' หรือไม่ และค่าของ 'line_id' ไม่เป็นค่าว่าง
 
 if (
@@ -253,6 +251,17 @@ if (
         th,
         td {
             padding: 3px;
+        }
+        #barchart_material {
+            background-color: #1C1D3A; /* สีพื้นหลังของ div */
+            border: 2px solid #3E4080; /* สีขอบ */
+            box-shadow: 2px 4px 5px #3E4080; /* สไตล์เงา */
+        }
+
+        #chart_div {
+            background-color: #1C1D3A; /* สีพื้นหลังของ div */
+            border: 2px solid #3E4080; /* สีขอบ */
+            box-shadow: 2px 4px 5px #3E4080; /* สไตล์เงา */
         }
 
         /*trend*/

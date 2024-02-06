@@ -124,7 +124,7 @@ $ot_data_json = json_encode($ot_data);
                 title: 'Proportion Of Actual OT',
                 pieHole: 0.4,
                 colors: ['#0BF8DF', '#15928E'], // ตั้งค่าสีตามต้องการ
-                width: '90%',
+                width: '100%',
                 height: 300, // ปรับขนาดความสูงตามที่ต้องการ
                 chartArea: {
                     width: '70%', // ตั้งค่าความกว้างของพื้นที่กราฟ
@@ -193,7 +193,7 @@ $ot_data_json = json_encode($ot_data);
                 pieHole: 0.4,
                 // colors: ['#0BF8DF', '#15928E'], // ตั้งค่าสีตามต้องการ
                 pieHole: 0.4,
-                width: '90%',
+                width: '100%',
                 height: 300, // ปรับขนาดความสูงตามที่ต้องการ
                 chartArea: {
                     width: '70%', // ตั้งค่าความกว้างของพื้นที่กราฟ
@@ -235,51 +235,22 @@ $ot_data_json = json_encode($ot_data);
 </head>
 
 <body>
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <div id="donutchart" style="width: 380px; height: 320px;"></div>
-            </div>
-            <div class="col-md-5">
-                <div id="detailchart" style="width: 380px; height: 320px;"></div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-md-5"
-                style="border: 2px solid #3E4080; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080; margin: 10px;">
-                <div id="donutchart" style="width: 100%; height: 320px;"></div>
-            </div>
-            <div class="col-md-5"
-                style="border: 2px solid #3E4080; border-radius: 15px; box-shadow: 2px 4px 5px #3E4080; margin: 10px;">
-                <div id="detailchart" style="width: 100%; height: 320px;"></div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="container">
         <div class="row">
             <div class="col-md-5" style="padding: 0; margin: 5px;">
                 <div style="border: 2px solid #3E4080; max-width: 400px; box-shadow: 2px 4px 5px #3E4080;">
                     <!-- ตั้งค่าขนาดของ div ที่มีแผนภูมิให้ตรงกับขนาดของ div ภายนอก -->
-                    <div id="donutchart" style="width: 100%; max-width: 400px; height:300px;"></div>
+                    <div id="donutchart" style="width: 100%;  height:300px;"></div>
                 </div>
             </div>
             <div class="col-md-5" style="padding: 0; margin-left: 50px;">
                 <div style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080;">
                     <!-- ตั้งค่าขนาดของ div ที่มีแผนภูมิให้ตรงกับขนาดของ div ภายนอก -->
-                    <div id="detailchart" style="width: 100%; max-width: 400px; height: 300px;"></div>
+                    <div id="detailchart" style="width: 100%;  height: 300px;"></div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
 </body>
 
 </html>

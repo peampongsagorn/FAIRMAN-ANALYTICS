@@ -1,6 +1,6 @@
 <?php
 //session_start();
-require_once('C:\xampp\htdocs\dashboard analytics\config\connection.php');
+require_once('../../config/connection.php');
 
 $currentYear = date('Y');
 $filterData = $_SESSION['filter'] ?? null;
@@ -134,12 +134,19 @@ $chartDataJson = json_encode($chartData);
 
             var options = {
                 chart: { title: 'Average OT Per Person Actual' },
+                backgroundColor: '#1C1D3A',
+                chartArea: {
+                    backgroundColor: '#1C1D3A',
+                    // กำหนด padding หรือ margin ถ้าจำเป็น
+                },
                 bars: 'horizontal',
                 hAxis: { format: 'decimal' },
                 height: 400,
                 colors: ['#1b9e77', '#d95f02', '#7570b3'],
-                legend: { position: 'bottom' }
+                legend: { position: 'bottom', textStyle: {color: 'white', fontSize: 12} },
             };
+
+            
 
             var chart = new google.charts.Bar(document.getElementById('barchart_material'));
             chart.draw(data, google.charts.Bar.convertOptions(options));
@@ -148,7 +155,7 @@ $chartDataJson = json_encode($chartData);
 </head>
 
 <body>
-    <div id="barchart_material" style="width: 550px; height: 300px;"></div>
+    <div id="barchart_material" style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080; width: 100%; height: 100%;"></div>
 </body>
 
 </html>

@@ -290,12 +290,12 @@ $actualJson = json_encode($ActualOtData);
 </head>
 
 <body>
-    <div class="col" style="padding: 0; margin-right: 30px;">
+    <!-- <div class="col" style="padding: 0; margin-right: 30px;">
         <div style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080;">
-            <!-- กำหนดขนาดของ div ให้เป็น 100% เพื่อให้กราฟขยายเต็มพื้นที่ -->
             <div id="chart_div" style="width: 100%; height:300px;"></div>
         </div>
-    </div>
+    </div> -->
+    <div id="chart_div" style="border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080; width: 100%; height: 100%;"></div>
 
 </body>
 

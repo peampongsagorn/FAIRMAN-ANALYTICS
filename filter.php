@@ -72,9 +72,11 @@ if (isset($_POST['submit'])) {
 
         .form-control,
         .form-select {
-            height: 35px;
+            height: 10px;
             margin-bottom: 0.5rem;
-            padding: 5px 10px;
+            padding: 4px 10px;
+
+            margin-bottom: 0.5rem;
         }
 
         .card-header-month {
@@ -95,166 +97,163 @@ if (isset($_POST['submit'])) {
             margin-right: 10px;
         }
 
-        .form-control-container, .form-control-container-month {
+        .form-control-container,
+        .form-control-container-month {
             flex-basis: 75%;
+            margin-bottom: 10px;
+
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        .custom-select, .form-control {
-            width: 100%;
+        .custom-select,
+        .form-control {
+            width: 80%;
+            height: 10px
         }
 
         .submit-button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+            /* display: flex; */
+            /* justify-content: center;
+            margin-top: 5px; */
         }
+
+        /* .modal-footer {
+            padding: 0.5rem;
+        }
+
+        .modal-footer .btn-primary {
+            padding: 0.25rem 1rem;
+            font-size: 0.875rem;
+        } */
     </style>
     <?php include('../analytics/include/header.php') ?>
 
 </head>
 
 <body>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"
+            viewBox="0 0 16 16">
+            <path
+                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+        </svg>
+        <i class="bi bi-filter"></i>Filter
+    </button>
 
-    <form method="post" action="">
-        <section>
-            <div class="from-row">
-                <p class="from-label">เลือกช่วงเดือนเริ่มต้น:</p>
-                <div class="form-control-container-month">
-                    <div class="form-group">
-                        <input type="month" id="start-month" name="startMonth" class="custom-select form-control" placeholder="From Date">
-                    </div>
-                </div>
-            </div>
 
-            <div class="from-row">
-                <p class="from-label">เลือกช่วงเดือนสิ้นสุด:</p>
-                <div class="form-control-container-month">
-                    <div>
-                        <input type="month" id="end-month" name="endMonth" class="custom-select form-control" placeholder="To Date">
-                    </div>
+    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterModalLabel">Filter Options</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
+                <form method="post" action="">
+                    <section>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="start-month" class="form-label">เลือกช่วงเดือนเริ่มต้น:</label>
+                                    <input type="month" id="start-month" name="startMonth" class="form-control"
+                                        placeholder="From Date">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="end-month" class="form-label">เลือกช่วงเดือนสิ้นสุด:</label>
+                                    <input type="month" id="end-month" name="endMonth" class="form-control"
+                                        placeholder="To Date">
+                                </div>
+                            </div>
 
-            <div class="from-row">
-                <div class="from-label">
-                    Business:
-                </div>
-                <div class="form-control-container">
-                    <div class="form-group">
-                        <select id="businessID" name="businessID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" selected>All</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="from-row">
-                <div class="from-label">
-                    Sub-busisness:
-                </div>
-                <div class="form-control-container">
-                    <div class="form-group">
-                        <select id="sub_businessID" name="sub_businessID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" selected>All</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="from-row">
-                <div class="from-label">
-                    Organization:
-                </div>
-                <div class="form-control-container">
-                    <div class="form-group">
-                        <select id="organizationID" name="organizationID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" selected>All</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="from-row">
-                <div class="from-label">
-                    Company:
-                </div>
-                <div class="form-control-container">
-                    <div class="form-group">
-                        <select id="companyID" name="companyID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" selected>All</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="from-row">
-                <div class="from-label">
-                    Location:
-                </div>
-                <div class="form-control-container">
-                    <div class="form-group">
-                        <select id="locationID" name="locationID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" selected>All</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="from-row">
-                <div class="from-label">
-                    Division:
-                </div>
-                <div class="form-control-container">
-                    <div class="form-group">
-                        <select id="divisionID" name="divisionID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" selected>All</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+                            <div class="row" style="margin-bottom: 10px">
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-label">Business:</label>
+                                    <select id="businessID" name="businessID" class="custom-select form-control"
+                                        aria-label="Default select example" autocomplete="off" data-live-search="true">
+                                        <option value="" selected>All</option>
+                                    </select>
+                                </div>
 
-            <div class="from-row">
-                <div class="from-label">
-                    Department:
-                </div>
-                <div class="form-control-container">
-                    <div class="form-group">
-                        <select id="departmentID" name="departmentID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" selected>All</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-label">Sub-Business:</label>
+                                    <select id="sub_businessID" name="sub_businessID" class="custom-select form-control"
+                                        aria-label="Default select example" autocomplete="off" data-live-search="true">
+                                        <option value="" selected>All</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 10px">
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-label">Organization:</label>
+                                    <select id="organizationID" name="organizationID" class="custom-select form-control"
+                                        aria-label="Default select example" autocomplete="off" data-live-search="true">
+                                        <option value="" selected>All</option>
+                                    </select>
+                                </div>
 
-            <div class="from-row">
-                <div class="from-label">
-                    Section:
-                </div>
-                <div class="form-control-container">
-                    <div class="form-group">
-                        <select id="sectionID" name="sectionID" class="custom-select form-control"
-                            aria-label="Default select example" autocomplete="off" data-live-search="true">
-                            <option value="" selected>All</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-label">Company:</label>
+                                    <select id="companyID" name="companyID" class="custom-select form-control"
+                                        aria-label="Default select example" autocomplete="off" data-live-search="true">
+                                        <option value="" selected>All</option>
+                                    </select>
+                                </div>
+                            </div>
 
-            <div class="submit-button-container">
-                <div class="row">
-                    <button type="submit" class="btn btn-primary" style="font-size: 20px; padding: 10px 20px;"
-                        name="submit">Submit</button>
-                </div>
-            </div>
+                            <div class="row" style="margin-bottom: 10px">
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-label">Location:</label>
+                                    <select id="locationID" name="locationID" class="custom-select form-control"
+                                        aria-label="Default select example" autocomplete="off" data-live-search="true">
+                                        <option value="" selected>All</option>
+                                    </select>
+                                </div>
 
-        </section>
-    </form>
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-label">Division:</label>
+                                    <select id="divisionID" name="divisionID" class="custom-select form-control"
+                                        aria-label="Default select example" autocomplete="off" data-live-search="true">
+                                        <option value="" selected>All</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-bottom: 10px">
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-label">Department:</label>
+                                    <select id="departmentID" name="departmentID" class="custom-select form-control"
+                                        aria-label="Default select example" autocomplete="off" data-live-search="true">
+                                        <option value="" selected>All</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-label">Section:</label>
+                                    <select id="sectionID" name="sectionID" class="custom-select form-control"
+                                        aria-label="Default select example" autocomplete="off" data-live-search="true">
+                                        <option value="" selected>All</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-end" style="margin-bottom: 10px">
+                                <div class="col-md-3 col-sm-12">
+                                    <button type="submit" class="btn btn-primary"
+                                        style="font-size: 15px; padding: 7px 7px;" name="submit">Submit</button>
+                                </div>
+                            </div>
+
+                    </section>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
     <?php

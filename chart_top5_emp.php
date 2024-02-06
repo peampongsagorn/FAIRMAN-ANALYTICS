@@ -4,7 +4,6 @@ require_once('../../config/connection.php');
 
 $currentYear = date('Y');
 $filterData = $_SESSION['filter'] ?? null;
-// $sqlConditions_actual = "date_start BETWEEN '{$filterData['startMonthDate']}' AND '{$filterData['endMonthDateCurrent']}'";
 $currentYear = date('Y'); // ปีปัจจุบัน
 $startYear = $currentYear . '-01-01'; // วันที่ 1 มกราคมของปีปัจจุบัน
 $currentDate = date('Y-m-d'); // วันที่ปัจจุบัน
@@ -140,7 +139,7 @@ foreach ($ActualOtData as $name => $departments) {
 usort($sortedData, function ($a, $b) {
     return $b['totalHours'] <=> $a['totalHours'];
 });
-$top10 = array_slice($sortedData, 0, 10);
+$top50 = array_slice($sortedData, 0, 50);
 ?>
 <html>
 
@@ -166,7 +165,7 @@ $top10 = array_slice($sortedData, 0, 10);
 
 </head>
 
-<body>
+<!-- <body>
     <table class="data-table2 table striped hover nowrap">
         <thead>
             <tr>
@@ -180,7 +179,7 @@ $top10 = array_slice($sortedData, 0, 10);
         </thead>
         <tbody>
             <?php
-            foreach ($top10 as $item) {
+            foreach ($top50 as $item) {
                 echo '<tr>';
                 echo '<td>' . htmlspecialchars($item['name']) . '</td>';
                 echo '<td>' . htmlspecialchars($item['department']) . '</td>';
@@ -193,7 +192,34 @@ $top10 = array_slice($sortedData, 0, 10);
             ?>
         </tbody>
     </table>
+</body> -->
+<body>
+    <table class="data-table2 table striped hover nowrap" style="width: 100%; border-collapse: collapse; border: 2px solid #3E4080; box-shadow: 2px 4px 5px #3E4080; height: 100%">
+        <thead style="background-color: #212233; color: #fff;">
+            <tr>
+                <th scope="col">FULLNAME_T</th>
+                <th scope="col">ชั่วโมงทั้งหมด</th>
+                <th scope="col">OT_NONFIX</th>
+                <th scope="col">OT_FIX</th>
+                <th scope="col">Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($sortedData as $item) {
+                echo '<tr style="background-color: #2A2D3E; color: #fff;">';
+                echo '<td>' . htmlspecialchars($item['name']) . '</td>';
+                echo '<td>' . number_format($item['totalHours'], 2) . '</td>';
+                echo '<td>' . number_format($item['NONFIX'], 2) . ' (' . number_format(($item['NONFIX'] / $item['totalHours']) * 100, 2) . '%)</td>';
+                echo '<td>' . number_format($item['FIX'], 2) . ' (' . number_format(($item['FIX'] / $item['totalHours']) * 100, 2) . '%)</td>';
+                echo '<td>' . htmlspecialchars($item['department']) . '</td>';
+                echo '</tr>';
+            }
+            ?>
+        </tbody>
+    </table>
 </body>
+
 <script>
     $(document).ready(function() {
         // Initialize DataTable with custom options

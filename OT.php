@@ -17,13 +17,14 @@ require_once('../../config/connection.php');
 
     <div class="main-container">
         <div class="pd-ltr-20">
-            <div class="card-box lower-box pd-20 mb-30" style="background-color: #eeeeee;  min-height: 1100px">
+            <div class="card-box lower-box pd-20 mb-30" style="background-color: #eeeeee;  min-height: 1100px; border: 4px solid #3E4080;
+                        border-radius: 15px; box-shadow: 10px 10px 8px #3E4080">
 
                 <!-- หัวข้อรายงาน OT -->
                 <div class="row mb-4">
                     <div class="col-3">
                         <h2 class="text-white bg-dark p-2" style="background-color: #1C1D3A ;text-align: center; border: 2px solid #3E4080;
-                        border-radius: 15px; box-shadow: 2px 4px 5px #3E4080">รายงาน OT</h2>
+                        border-radius: 15px; box-shadow: 10px 10px 10px #3E4080">รายงาน OT</h2>
                     </div>
                     <div class="col-4 justify-content-end">
                         <?php include('../analytics/filter.php') ?>

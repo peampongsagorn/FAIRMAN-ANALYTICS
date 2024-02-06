@@ -1,7 +1,10 @@
 <?php
 session_start(); // เรียกใช้ session_start() ก่อนที่จะใช้ session
 // require_once('C:\xampp\htdocs\dashboard analytics\config\connection.php');
-require_once('../../config/connection.php')
+require_once('../../config/connection.php');
+$date2 = new DateTime();
+$date2->setTimezone(new DateTimeZone('Asia/Bangkok'));
+
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +57,7 @@ require_once('../../config/connection.php')
                 <h4 class="font-20 weight-500 mb-10 text-capitalize">
                     SCG : Fair Manpower ยินดีให้บริการ <h4 class="weight-600 font-15 text-primary"></h4>
                 </h4>
-                <p class="font-18 max-width-1000">* หมายเหตุ ทางผู้พัฒนาได้ปรับปรุงส่วน <a href="listemployee_Create.php"> ข้อมูลพนักงาน </a>ณ วันที่ 5 ม.ค. 2567 <p class="font-18 max-width-800 text-danger"> จึง สุขสันปีใหม่ 2567 มา ณ ที่นี้</p></p>
+                <p class="font-18 max-width-1000">* หมายเหตุ ข้อมูลอัพเดต ณ วันที่ <?php echo $date2->format("D, d M Y") ?><p class="font-18 max-width-800 text-danger">พรใดๆ ที่ว่าดีในโลกนี้ ขอมาอวยชัยให้คนดี จงมีแต่ความสุขตลอดกาล</p></p>
             </div>
             <div class="card-box pd-20 height-100-p mb-30">
                 <h4 class="font-20 weight-500 mb-10 text-capitalize">

@@ -1,7 +1,7 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="dashboard.php">
-            <img src="../../analytics/image/SCGlogo.png">
+            <img src="C:\xampp\htdocs\dashboard analytics\admin\analytics\image\SCGlogo.png">
         </a>
     </div>
     <div class="menu-block customscroll">

@@ -44,7 +44,7 @@ $date2->setTimezone(new DateTimeZone('Asia/Bangkok'));
     echo "</script>"; -->
 
     <?php include('../analytics/include/navbar.php') ?>
-    <?php include('../analytics/include/sidebar.php') ?>
+    <?php include_once('../analytics/include/sidebar.php') ?>
 
     <div class="mobile-menu-overlay"></div>
 
@@ -53,13 +53,13 @@ $date2->setTimezone(new DateTimeZone('Asia/Bangkok'));
             <div class="title pb-20">
                 <h2 class="h3 mb-0">Darshboard Data Analytics</h2>
             </div>
-            <div class="card-box pd-20 height-100-p mb-30">
+            <div class="card-box pd-20 height-100-p mb-30"  style="box-shadow: 10px 10px 10px #bdbdbd";>
                 <h4 class="font-20 weight-500 mb-10 text-capitalize">
                     SCG : Fair Manpower ยินดีให้บริการ <h4 class="weight-600 font-15 text-primary"></h4>
                 </h4>
                 <p class="font-18 max-width-1000">* หมายเหตุ ข้อมูลอัพเดต ณ วันที่ <?php echo $date2->format("D, d M Y") ?><p class="font-18 max-width-800 text-danger">พรใดๆ ที่ว่าดีในโลกนี้ ขอมาอวยชัยให้คนดี จงมีแต่ความสุขตลอดกาล</p></p>
             </div>
-            <div class="card-box pd-20 height-100-p mb-30">
+            <div class="card-box pd-20 height-100-p mb-30"  style="box-shadow: 10px 10px 10px #bdbdbd;">
                 <h4 class="font-20 weight-500 mb-10 text-capitalize">
                     เลือกหัวข้อ Analytics ที่สนใจ <h4 class="weight-600 font-15 text-primary"></h4>
                 </h4>
